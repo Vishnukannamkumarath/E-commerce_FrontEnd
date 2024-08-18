@@ -1,30 +1,57 @@
-import {useState} from 'react';
-import axios from 'axios';
-function Mob(){
-    const[price,setprice]=useState(0);
-    async function Pce(e){
-       setprice(e.target.value)
-       const response=await axios.post('http://localhost:5002/mobiles',{
-        price
-       });
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+const Mob = () => {
+  const [mobiles, setMobiles] = useState([]);
+  const navigate=useNavigate();
+
+  useEffect(() => {
+    const fetchMobiles = async () => {
+      try {
+        const response = await fetch('http://localhost:5002/mdisplay');
+        const data = await response.json();
+        console.log(data); 
+        setMobiles(data);
+      } catch (error) {
+        console.error('Error fetching mobile data:', error);
+      }
     };
 
-    return(
-        <div>
-            <h1>Mobile Phones</h1>
-            <p>Mobile phones are no more merely a part of our lives. Whether it's to stay connected with friends and family or to keep abreast of important developments around the world, mobiles are no longer for sending a text or making a call. From budget to state-of-the-art smartphones; indigenous names to global big-wigs - a whole universe of mobiles await you on E-shop. Whether you’re looking for waterdrop notch screens, a high screen to body ratio, AI-powered sensational cameras, high storage capacity, blazing quick processing engines or reflective glass designs, rest assured you won’t have to venture anywhere else for your smartphone needs. The information you are reading has been last updated on 13-Jul-24. 
+    fetchMobiles();
+  }, []);
 
-               iPhone 15 | iPhone 15 Plus | iPhone 15 Pro | iPhone 15 Pro Max | Vivo x 100 | OPPO Reno 11 | Xiaomi 14 CIVI | Infinix Note 40 5G | Pixel 7a | Moto Edge 40 | POCO C55 | Samsung Galaxy S24 5G | Motorola g04s</p>
-<div>
-    <h1>Filter</h1>
-    <h2>Category</h2>
-    <h3>Price</h3>
-    <input type="number" placeholder='Enter your limit' onChange={Pce}/>
+  const handleAddToCart = (mobile) => {
+    console.log('Adding to cart:', mobile);
 
+  };
 
+  const handleBuyNow = (mobile) => {
+    console.log('Buying now:', mobile);
+    navigate('/checkout')
+    
+  };
 
-</div>
+  return (
+    <div style={{ padding: '20px' }}>
+      <h1>Mobile Store</h1>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
+        {Array.isArray(mobiles) && mobiles.map((mobile) => (
+          <div key={mobile._id} style={{ border: '1px solid #ccc', padding: '10px', width: '300px' }}>
+            <h2>{mobile.name}</h2>
+            <p>Price: ${mobile.price}</p>
+            <img src={mobile.image} alt={mobile.name} style={{ width: '100%', height: 'auto' }} />
+            <div style={{ marginTop: '10px' }}>
+              <button onClick={() => handleAddToCart(mobile)} style={{ marginRight: '10px' }}>
+                Add to Cart
+              </button>
+              <button onClick={() => handleBuyNow(mobile)}>
+                Buy Now
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
-        </div>
-    );
-}export default Mob;
+export default Mob;

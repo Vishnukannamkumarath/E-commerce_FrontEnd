@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import React from "react";
+import './naavbar.css'
+
 const navstyle={
   display: "flex",
   alignItems:" stretch",
@@ -14,7 +16,7 @@ const navstyle={
   margin: "0px",
   minHeight: "0px",
   minWidth:"0px",
-  padding: "0px",
+  padding: "70px",
   position: "relative",
   textDecoration: "none",
   zIndex:"0px",
@@ -50,13 +52,13 @@ function HomeP(){
             <div style={{marginTop:"30px",marginLeft:"40px",transition:"0.3s",cursor:"pointer"}}><a className="1L" title="Login" aria-haspopup="true" href="/login"><span style={{color:"green",width:"50px",height:"50px" }}> Login</span></a> </div>
             <div><a href="/cart"><img src="cart.jpg" style={{width:"50px",height:"50px",marginTop:"20px",marginLeft:"40px"}}/></a><a href="/help"><img src="dropdown.webp" style={{width:"50px",height:"50px",marginLeft:"40px"}}/></a></div>
            </div>
+           
            <div style={navstyle}>
             <a style={{marginLeft:"250px"}} href="/grocery"><img src="grocery.jpeg" style={{width:"100px",height:"100px"}}  alt="Grocery" /><figcaption>Grocery</figcaption></a>
             <a style={{marginLeft:"100px"}} href="/mobiles"><img src="mobile.jpeg" style={{width:"100px",height:"100px"}} alt="Mobiles" /><figcaption>Mobiles</figcaption></a>
-            <a style={{marginLeft:"100px"}}><img src="fasion.jpg" style={{width:"100px",height:"100px"}} alt="Fashion" /><figcaption>Fashion</figcaption></a>
-            <a style={{marginLeft:"100px"}}><img src="electronics.jpeg" style={{width:"100px",height:"100px"}} alt="Electronics" /><figcaption>Electronics</figcaption></a>
-            <a style={{marginLeft:"100px"}}><img src="furniture.jpg" style={{width:"100px",height:"100px"}} alt="Furniture" /><figcaption>Furnitures</figcaption></a>
-            <a style={{marginLeft:"100px"}}><img src="aero.jpg" style={{width:"100px",height:"100px"}} alt="Travel" /><figcaption>Travel</figcaption></a>
+            <a style={{marginLeft:"100px"}} href="/fashion"><img src="fasion.jpg" style={{width:"100px",height:"100px"}} alt="Fashion" /><figcaption>Fashion</figcaption></a>
+            <a style={{marginLeft:"100px"}} href="/electronics"><img src="electronics.jpeg" style={{width:"100px",height:"100px"}} alt="Electronics" /><figcaption>Electronics</figcaption></a>
+            <a style={{marginLeft:"100px"}} href="/furniture"><img src="furniture.jpg" style={{width:"100px",height:"100px"}} alt="Furniture" /><figcaption>Furnitures</figcaption></a>
             </div>
              <div style={{padding:"0px",gridAutoColumns:"100%",scrollPaddingInlineStart:"0px",msScrollSnapX:"inherit"}}>
               <img src={images[ci]}
@@ -81,11 +83,11 @@ function HomeP(){
             <div style={normal}>
             <h1>Best Electronics</h1>
               <div style={{display:"flex"}}>
-              <a><img src="hp.jpeg" /><figcaption>Head Phone</figcaption></a>
-              <a><img src="pb.webp" style={{height:"200px",marginLeft:"80px"}}/><figcaption style={{marginLeft:"80px"}}>Power Bank</figcaption></a>
-              <a><img src="lap.jpeg" style={{marginLeft:"80px"}}/><figcaption style={{marginLeft:"100px"}}>Lap Top</figcaption></a>
-              <a><img src="mobile.jpeg" style={{marginLeft:"80px"}}/><figcaption style={{marginLeft:"80px"}}>Mobiles</figcaption></a>
-              <a><img src="watch.jpeg" style={{marginLeft:"80px"}}/><figcaption style={{marginLeft:"80px"}}>Watches</figcaption></a>
+              <a><img src="hp.jpeg" style={{height:"200px",width:"200px",marginLeft:"80px"}} /><figcaption style={{marginLeft:"80px"}}>Head Phone</figcaption></a>
+              <a><img src="pb.webp" style={{height:"200px",width:"200px",marginLeft:"80px"}}/><figcaption style={{marginLeft:"80px"}}>Power Bank</figcaption></a>
+              <a><img src="lap.jpeg" style={{height:"200px",width:"200px",marginLeft:"80px"}}/><figcaption style={{marginLeft:"100px"}}>Lap Top</figcaption></a>
+              <a><img src="mobile.jpeg" style={{marginLeft:"80px",height:"200px",width:"200px"}}/><figcaption style={{marginLeft:"80px"}}>Mobiles</figcaption></a>
+              <a><img src="watch.jpeg" style={{marginLeft:"80px",height:"200px",width:"200px"}}/><figcaption style={{marginLeft:"80px"}}>Watches</figcaption></a>
               <a><img src="camera.jpg" style={{marginLeft:"40px",height:"200px",width:"200px"}}/><figcaption style={{marginLeft:"80px"}}>Cameras</figcaption></a>
               </div>
             </div>

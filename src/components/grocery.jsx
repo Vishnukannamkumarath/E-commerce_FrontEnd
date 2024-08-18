@@ -1,16 +1,7 @@
 import {useState} from 'react';
 import axios from 'axios';
-const gstyle={
-    border:"1px solid black",
-    backgroundColor:"#FFFFF9",
-    padding:"5px",
-    marginLeft:"20px",
-    width:'350px',
-    height:"350px",
-    marginTop:"40px",
-    fontSize:"12px",
-}
-function Groc(){
+import './test.css'
+function Groc({ image, title, currentPrice, originalPrice, description, loved }){
     const [qqty,setqqty]=useState(0);
     const [qprice,setqprice]=useState(0);
     const [caqty,setcaqty]=useState(0);
@@ -68,29 +59,105 @@ function Groc(){
         <div>
           <div style={{backgroundColor:"green"}}> <l style={{marginLeft:"200px",fontSize:"48px",color:"white"}}><b>Grocery</b></l><br/></div> 
           <div  style={{display:"flex"}}>
-            <div style={gstyle}><img src="qualiflower.webp" style={{width:"200px",height:"200px"}} alt="Qualiflower"/><figcaption style={{fontSize:"20px"}}>{Qualiflowers}</figcaption><br/>
-            <button onClick={Qualiflower}><b>+</b></button>
-            <button onClick={Qualiflowers} style={{marginLeft:"10px"}}><b>-</b></button>
-            <p>Quantity={qqty}Kg</p>
-            <p>Total Cost={qprice}</p>
-            <button>Buy</button><button style={{marginLeft:"10px"}} onClick={Cart}>Add to Cart</button>
-            </div>
-           <div style={gstyle}><img src="carrot.webp" style={{width:"200px",height:"200px"}} alt="Qualiflower"/><figcaption style={{fontSize:"20px"}}>Carrots</figcaption><br/>
-            <button onClick={Carrot}><b>+</b></button>
-            <button onClick={Carrots}  style={{marginLeft:"10px"}}><b>-</b></button>
-            <p>Quantity={caqty}Kg</p>
-            <p>Total Cost={caprice}</p>
-            <button>Buy</button><button style={{marginLeft:"10px"}} onClick={Cartca}>Add to Cart</button></div>
-            <div style={gstyle}><img src="capsicum.webp" style={{width:"200px",height:"200px"}} alt="Capsicumms"/><figcaption style={{fontSize:"20px"}}>Capsiccums</figcaption><br/>
-            <button onClick={Capsiccum}><b>+</b></button>
-            <button onClick={Capsiccums}  style={{marginLeft:"10px"}}><b>-</b></button>
-            <p>Quantity={cqty}Kg</p>
-            <p>Total Cost={cprice}</p>
-            <button>Buy</button>
-            <button style={{marginLeft:"10px"}} onClick={Cartc}>Add to Cart</button></div>
-            </div>
+          <div className="card">
+      <div className="card-header">
+        <img src="qualiflower.webp" alt='oneplus' />
+        <div className="favorite">
+          <span>&#9829;</span>
+          {loved && <span className="you-love">You love this!</span>}
+        </div>
+      </div>
+      <div className="card-body">
+        <h3>Qualiflowers</h3>
+        <p className="price">
+          <span className="current-price">21$</span>
+          <span className="original-price">$27</span>
+        </p>
+        <p className="description">11,3256 rating 7722 Reviews</p>
+        <button className="buy-now">Buy Now</button>
+        <div style={{padding:"2px"}}><button className="buy-now">Add to Cart</button></div>
+      
+      </div>
+    </div>
+    <div className="card">
+      <div className="card-header">
+        <img src="carrot.webp" alt='oneplus' />
+        <div className="favorite">
+          <span>&#9829;</span>
+          {loved && <span className="you-love">You love this!</span>}
+        </div>
+      </div>
+      <div className="card-body">
+        <h3>Carrots</h3>
+        <p className="price">
+          <span className="current-price">21$</span>
+          <span className="original-price">$27</span>
+        </p>
+        <p className="description">11,3256 rating 7722 Reviews</p>
+        <button className="buy-now">Buy Now</button>
+        <div style={{padding:"2px"}}><button className="buy-now">Add to Cart</button></div>
+      </div>
+    </div>
+    <div className="card">
+      <div className="card-header">
+        <img src="capsicum.webp" alt='oneplus' />
+        <div className="favorite">
+          <span>&#9829;</span>
+          {loved && <span className="you-love">You love this!</span>}
+        </div>
+      </div>
+      <div className="card-body">
+        <h3>Capsicumms</h3>
+        <p className="price">
+          <span className="current-price">21$</span>
+          <span className="original-price">$27</span>
+        </p>
+        <p className="description">11,3256 rating 7722 Reviews</p>
+        <button className="buy-now">Buy Now</button>
+        <div style={{padding:"2px"}}><button className="buy-now">Add to Cart</button></div>
+      </div>
+    </div>
+    <div className="card">
+      <div className="card-header">
+        <img src="colgate.jpeg" alt='oneplus' />
+        <div className="favorite">
+          <span>&#9829;</span>
+          {loved && <span className="you-love">You love this!</span>}
+        </div>
+      </div>
+      <div className="card-body">
+        <h3>Colgate Tooth Pastes</h3>
+        <p className="price">
+          <span className="current-price">21$</span>
+          <span className="original-price">$27</span>
+        </p>
+        <p className="description">11,3256 rating 7722 Reviews</p>
+        <button className="buy-now">Buy Now</button>
+        <div style={{padding:"2px"}}><button className="buy-now">Add to Cart</button></div>
+      </div>
+    </div>
+    <div className="card">
+      <div className="card-header">
+        <img src="sur.jpeg" alt='oneplus' />
+        <div className="favorite">
+          <span>&#9829;</span>
+          {loved && <span className="you-love">You love this!</span>}
+        </div>
+      </div>
+      <div className="card-body">
+        <h3>Surf Excell Matic Liquid</h3>
+        <p className="price">
+          <span className="current-price">21$</span>
+          <span className="original-price">$27</span>
+        </p>
+        <p className="description">11,3256 rating 7722 Reviews</p>
+        <button className="buy-now">Buy Now</button>
+        <div style={{padding:"2px"}}><button className="buy-now">Add to Cart</button></div>
+      </div>
+    </div>
            
             
+        </div>
         </div>
 
     );

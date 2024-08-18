@@ -24,6 +24,108 @@
   height: 40vmin;
   pointer-events: none;
 }
+.button{
+  position: relative;
+    background-color: white;
+    transition: color 0.3s ease;
+    overflow: hidden;
+    z-index: 0;
+}
+.button::before{
+  content:'';
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:300%;
+  height:300%;
+  background-color: pink ;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+  z-index:-1;
+  transform: translate(-50%,-50%) scale(0);
+}
+/* src/App.css */
+
+.App {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+h1, h2 {
+  color: #333;
+}
+
+button {
+  background-color: #ff4b2b;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ff6b6b;
+}
+
+.button:hover::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+.button:hover {
+  color: white;
+}
+/* App.css */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5;
+}
+
+.App {
+  display: flex;
+  height: 100vh;
+}
+/* src/App.css */
+.App {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+form {
+  max-width: 600px;
+  margin: auto;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+
+.app-container {
+  display: flex;
+  width: 100%;
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

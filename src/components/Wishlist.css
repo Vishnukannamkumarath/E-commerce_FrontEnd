@@ -1,0 +1,32 @@
+/* Wishlist.css */
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  thead {
+    background-color: #f8f8f8;
+  }
+  
+  th, td {
+    padding: 8px 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  img {
+    width: 50px;
+    height: auto;
+  }
+  
+  button {
+    padding: 4px 8px;
+    margin: 0 2px;
+    cursor: pointer;
+  }
+  
+  select, input[type="text"] {
+    padding: 4px;
+    margin: 4px 0;
+  }
+  
