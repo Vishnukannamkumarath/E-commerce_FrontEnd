@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import './test.css'
 function Groc({ image, title, currentPrice, originalPrice, description, loved }){
     const [qqty,setqqty]=useState(0);
@@ -8,6 +9,7 @@ function Groc({ image, title, currentPrice, originalPrice, description, loved })
     const [caprice,setcaprice]=useState(0);
     const [cqty,setcqty]=useState(0);
     const [cprice,setcprice]=useState(0);
+    const navigate =useNavigate();
     const fname="Qualiflower";
     const sname="Carrot";
     const tname="Capsiccum";
@@ -54,6 +56,9 @@ function Groc({ image, title, currentPrice, originalPrice, description, loved })
             tname,cqty,cprice
         });
     }
+    function Change(e){
+      navigate('/checkout')
+    }
     
     return(
         <div>
@@ -74,7 +79,7 @@ function Groc({ image, title, currentPrice, originalPrice, description, loved })
           <span className="original-price">$27</span>
         </p>
         <p className="description">11,3256 rating 7722 Reviews</p>
-        <button className="buy-now">Buy Now</button>
+        <button className="buy-now" onClick={Change}>Buy Now</button>
         <div style={{padding:"2px"}}><button className="buy-now">Add to Cart</button></div>
       
       </div>
@@ -94,7 +99,7 @@ function Groc({ image, title, currentPrice, originalPrice, description, loved })
           <span className="original-price">$27</span>
         </p>
         <p className="description">11,3256 rating 7722 Reviews</p>
-        <button className="buy-now">Buy Now</button>
+        <button className="buy-now" onClick={Change}>Buy Now</button>
         <div style={{padding:"2px"}}><button className="buy-now">Add to Cart</button></div>
       </div>
     </div>
@@ -113,7 +118,7 @@ function Groc({ image, title, currentPrice, originalPrice, description, loved })
           <span className="original-price">$27</span>
         </p>
         <p className="description">11,3256 rating 7722 Reviews</p>
-        <button className="buy-now">Buy Now</button>
+        <button className="buy-now" onClick={Change}>Buy Now</button>
         <div style={{padding:"2px"}}><button className="buy-now">Add to Cart</button></div>
       </div>
     </div>
@@ -132,7 +137,7 @@ function Groc({ image, title, currentPrice, originalPrice, description, loved })
           <span className="original-price">$27</span>
         </p>
         <p className="description">11,3256 rating 7722 Reviews</p>
-        <button className="buy-now">Buy Now</button>
+        <button className="buy-now" onClick={Change}>Buy Now</button>
         <div style={{padding:"2px"}}><button className="buy-now">Add to Cart</button></div>
       </div>
     </div>
@@ -151,7 +156,7 @@ function Groc({ image, title, currentPrice, originalPrice, description, loved })
           <span className="original-price">$27</span>
         </p>
         <p className="description">11,3256 rating 7722 Reviews</p>
-        <button className="buy-now">Buy Now</button>
+        <button className="buy-now" onClick={Change} >Buy Now</button>
         <div style={{padding:"2px"}}><button className="buy-now">Add to Cart</button></div>
       </div>
     </div>

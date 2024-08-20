@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const CartItem = require('../models/CartItem');
 
-// Fetch all cart items
+
 router.get('/cart', async (req, res) => {
     try {
         const items = await CartItem.find();
@@ -12,7 +12,6 @@ router.get('/cart', async (req, res) => {
     }
 });
 
-// Remove item from cart
 router.delete('/cart/:id', async (req, res) => {
     try {
         const item = await CartItem.findByIdAndDelete(req.params.id);

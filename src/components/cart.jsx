@@ -1,61 +1,61 @@
-// CartPage.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const CartPage = () => {
+const CartL = () => {
   const [cartItems, setCartItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Fetch cart items from the backend
   useEffect(() => {
+    // Fetch cart items when component mounts
     const fetchCartItems = async () => {
       try {
         const response = await axios.get('http://localhost:5002/cart');
         setCartItems(response.data);
-      } catch (error) {
-        console.error('Error fetching cart items:', error);
+      } catch (err) {
+        setError('Failed to fetch cart items');
+        console.error('Error fetching cart items:', err);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchCartItems();
   }, []);
 
-  // Handle removal of an item
   const handleRemove = async (id) => {
     try {
       await axios.delete(`http://localhost:5002/cart/${id}`);
-      // Remove item from state
+      // Remove item from local state
       setCartItems(cartItems.filter(item => item._id !== id));
-    } catch (error) {
-      console.error('Error removing item:', error);
+    } catch (err) {
+      setError('Failed to remove item');
+      console.error('Error removing item:', err);
     }
   };
 
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>{error}</p>;
+
   return (
-    <div className="cart-page">
-      <h1>Your Cart</h1>
-      <div className="cart-items">
-        {cartItems.length > 0 ? (
-          cartItems.map(item => (
-            <div key={item._id} className="cart-item">
-              <img src={`data:image/jpeg;base64,${item.image}`} alt={item.name} className="product-image" />
-              <div className="product-details">
-                <h2>{item.name}</h2>
-                <p>ID: {item._id}</p>
-                <button
-                  className="remove-button"
-                  onClick={() => handleRemove(item._id)}
-                >
-                  Remove
-                </button>
-              </div>
-            </div>
-          ))
-        ) : (
-          <p>No items in your cart.</p>
-        )}
-      </div>
+    <div>
+      <h1>Cart Page</h1>
+      {cartItems.length === 0 ? (
+        <p>Your cart is empty</p>
+      ) : (
+        <ul>
+          {cartItems.map(item => (
+            <li key={item._id} style={{ border: '1px solid #ddd', margin: '10px', padding: '10px', borderRadius: '5px' }}>
+              <h2>{item.type}</h2>
+              <p>Price: ${item.price}</p>
+              {item.image && <img src={item.image} alt={item.type} style={{ width: '100px', height: 'auto' }} />}
+              <button onClick={() => handleRemove(item._id)}>Remove</button>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
 
-export default CartPage;
+export default CartL;

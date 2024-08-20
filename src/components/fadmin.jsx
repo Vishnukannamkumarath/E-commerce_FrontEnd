@@ -1,75 +1,105 @@
-
-
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const Fasadmin = () => {
-  const [type, setType] = useState('');
+  const [dressType, setDressType] = useState('');
   const [price, setPrice] = useState('');
   const [image, setImage] = useState(null);
-  const [message, setMessage] = useState('');
+  const [imagePreview, setImagePreview] = useState('');
 
-  const handleImageUpload = (e) => {
+  const handleImageChange = (e) => {
     const file = e.target.files[0];
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setImage(reader.result);
-    };
-    reader.readAsDataURL(file);
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+        setImage(file);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!dressType || !price || !image) {
+      alert('Please fill out all fields and upload an image.');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('type', dressType);
+    formData.append('price', price);
+    formData.append('image', image);
+
     try {
-      const response = await fetch('http://localhost:5002/fadmin', {
-        method: 'POST',
+      const response = await axios.post('http://localhost:5002/fadmin', formData, {
         headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ type, price, image }),
+          'Content-Type': 'multipart/form-data'
+        }
       });
-      const data = await response.json();
-      setMessage(data.message);
+      console.log('Dress added successfully:', response.data);
+      setDressType('');
+      setPrice('');
+      setImage(null);
+      setImagePreview('');
     } catch (error) {
-      setMessage('Failed to add dress');
+      console.error('Error adding dress:', error);
+      alert('Failed to add dress. Please try again.');
     }
   };
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h1>Add New Dress</h1>
+    <div>
+      <h1>Admin Page</h1>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Type of Dress:</label>
-          <input
-            type="text"
-            value={type}
-            onChange={(e) => setType(e.target.value)}
-            required
-          />
+          <label>
+            Dress Type:
+            <input
+              type="text"
+              value={dressType}
+              onChange={(e) => setDressType(e.target.value)}
+              required
+            />
+          </label>
         </div>
         <div>
-          <label>Price:</label>
-          <input
-            type="number"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            required
-          />
+          <label>
+            Price:
+            <input
+              type="number"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+              required
+              min="0"
+              step="0.01"
+            />
+          </label>
         </div>
         <div>
-          <label>Photo:</label>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageUpload}
-            required
-          />
+          <label>
+            Image:
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              required
+            />
+          </label>
+          {imagePreview && (
+            <img
+              src={imagePreview}
+              alt="Image Preview"
+              style={{ width: '100px', height: 'auto', marginTop: '10px' }}
+            />
+          )}
         </div>
         <button type="submit">Add Dress</button>
       </form>
-      {message && <p>{message}</p>}
     </div>
   );
 };
 
 export default Fasadmin;
+
